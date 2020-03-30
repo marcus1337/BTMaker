@@ -50,6 +50,16 @@ public:
         ending(tmpText);
         return tmpText;
     }
+
+    std::string getTreeXML(float* NNOutput) {
+        std::string result;
+        beginning(result);
+        startInterior(result, interiorNodes[0]);
+        action(result, actionNodes[0]);
+        endInterior(result, interiorNodes[0]);
+        ending(result);
+        return result;
+    }
        
 
 };

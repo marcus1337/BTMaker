@@ -9,14 +9,19 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="src\BTMaker.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Leaves.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Evaluator.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -5,7 +5,6 @@
 
 class Leaves {
 public:
-    std::string sentence = "This is a perfect sentence. This sentence should be in this order.";
     std::string tickResult;
 
     BT::NodeStatus action1() {

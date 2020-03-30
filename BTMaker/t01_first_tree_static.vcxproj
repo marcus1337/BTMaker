@@ -83,7 +83,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\Marcus\Documents\Github\BTMaker\BTMaker\src;C:\Users\Marcus\Documents\Github\ExpDLLBackup\ExpLib3\exportHeaders;C:\Users\Marcus\Downloads\BehaviorTree.CPP-ros2-3.1.1\BehaviorTree.CPP-ros2-3.1.1\examples\..\sample_nodes;C:\Users\Marcus\Downloads\BehaviorTree.CPP-ros2-3.1.1\BehaviorTree.CPP-ros2-3.1.1\include;C:\Users\Marcus\Downloads\BehaviorTree.CPP-ros2-3.1.1\BehaviorTree.CPP-ros2-3.1.1\3rdparty;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Marcus\Documents\Github\BTMaker\includes;C:\Users\Marcus\Documents\Github\BTMaker\BTMaker\src;C:\Users\Marcus\Documents\Github\ExpDLLBackup\ExpLib3\exportHeaders;C:\Users\Marcus\Downloads\BehaviorTree.CPP-ros2-3.1.1\BehaviorTree.CPP-ros2-3.1.1\examples\..\sample_nodes;C:\Users\Marcus\Downloads\BehaviorTree.CPP-ros2-3.1.1\BehaviorTree.CPP-ros2-3.1.1\include;C:\Users\Marcus\Downloads\BehaviorTree.CPP-ros2-3.1.1\BehaviorTree.CPP-ros2-3.1.1\3rdparty;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <CompileAs>CompileAsCpp</CompileAs>
@@ -127,7 +127,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\Marcus\Documents\Github\BTMaker\BTMaker\src;C:\Users\Marcus\Documents\Github\ExpDLLBackup\ExpLib3\exportHeaders;C:\Users\Marcus\Downloads\BehaviorTree.CPP-ros2-3.1.1\BehaviorTree.CPP-ros2-3.1.1\examples\..\sample_nodes;C:\Users\Marcus\Downloads\BehaviorTree.CPP-ros2-3.1.1\BehaviorTree.CPP-ros2-3.1.1\include;C:\Users\Marcus\Downloads\BehaviorTree.CPP-ros2-3.1.1\BehaviorTree.CPP-ros2-3.1.1\3rdparty;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Marcus\Documents\Github\BTMaker\includes;C:\Users\Marcus\Documents\Github\BTMaker\BTMaker\src;C:\Users\Marcus\Documents\Github\ExpDLLBackup\ExpLib3\exportHeaders;C:\Users\Marcus\Downloads\BehaviorTree.CPP-ros2-3.1.1\BehaviorTree.CPP-ros2-3.1.1\examples\..\sample_nodes;C:\Users\Marcus\Downloads\BehaviorTree.CPP-ros2-3.1.1\BehaviorTree.CPP-ros2-3.1.1\include;C:\Users\Marcus\Downloads\BehaviorTree.CPP-ros2-3.1.1\BehaviorTree.CPP-ros2-3.1.1\3rdparty;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <CompileAs>CompileAsCpp</CompileAs>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -171,7 +171,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\Marcus\Documents\Github\BTMaker\BTMaker\src;C:\Users\Marcus\Documents\Github\ExpDLLBackup\ExpLib3\exportHeaders;C:\Users\Marcus\Downloads\BehaviorTree.CPP-ros2-3.1.1\BehaviorTree.CPP-ros2-3.1.1\examples\..\sample_nodes;C:\Users\Marcus\Downloads\BehaviorTree.CPP-ros2-3.1.1\BehaviorTree.CPP-ros2-3.1.1\include;C:\Users\Marcus\Downloads\BehaviorTree.CPP-ros2-3.1.1\BehaviorTree.CPP-ros2-3.1.1\3rdparty;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Marcus\Documents\Github\BTMaker\includes;C:\Users\Marcus\Documents\Github\BTMaker\BTMaker\src;C:\Users\Marcus\Documents\Github\ExpDLLBackup\ExpLib3\exportHeaders;C:\Users\Marcus\Downloads\BehaviorTree.CPP-ros2-3.1.1\BehaviorTree.CPP-ros2-3.1.1\examples\..\sample_nodes;C:\Users\Marcus\Downloads\BehaviorTree.CPP-ros2-3.1.1\BehaviorTree.CPP-ros2-3.1.1\include;C:\Users\Marcus\Downloads\BehaviorTree.CPP-ros2-3.1.1\BehaviorTree.CPP-ros2-3.1.1\3rdparty;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <CompileAs>CompileAsCpp</CompileAs>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -215,7 +215,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\Marcus\Documents\Github\BTMaker\BTMaker\src;C:\Users\Marcus\Documents\Github\ExpDLLBackup\ExpLib3\exportHeaders;C:\Users\Marcus\Downloads\BehaviorTree.CPP-ros2-3.1.1\BehaviorTree.CPP-ros2-3.1.1\examples\..\sample_nodes;C:\Users\Marcus\Downloads\BehaviorTree.CPP-ros2-3.1.1\BehaviorTree.CPP-ros2-3.1.1\include;C:\Users\Marcus\Downloads\BehaviorTree.CPP-ros2-3.1.1\BehaviorTree.CPP-ros2-3.1.1\3rdparty;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Marcus\Documents\Github\BTMaker\includes;C:\Users\Marcus\Documents\Github\BTMaker\BTMaker\src;C:\Users\Marcus\Documents\Github\ExpDLLBackup\ExpLib3\exportHeaders;C:\Users\Marcus\Downloads\BehaviorTree.CPP-ros2-3.1.1\BehaviorTree.CPP-ros2-3.1.1\examples\..\sample_nodes;C:\Users\Marcus\Downloads\BehaviorTree.CPP-ros2-3.1.1\BehaviorTree.CPP-ros2-3.1.1\include;C:\Users\Marcus\Downloads\BehaviorTree.CPP-ros2-3.1.1\BehaviorTree.CPP-ros2-3.1.1\3rdparty;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <CompileAs>CompileAsCpp</CompileAs>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -337,6 +337,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\BTMaker.h" />
+    <ClInclude Include="src\Evaluator.h" />
     <ClInclude Include="src\Leaves.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

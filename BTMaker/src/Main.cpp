@@ -5,7 +5,11 @@
 #include "BTMaker.h"
 #include <iostream>
 
+#include "boost/algorithm/sequence/edit_distance.hpp"
+
 using namespace std;
+using boost::algorithm::sequence::edit_distance;
+using namespace boost::algorithm::sequence::parameter;
 
 int main()
 {
@@ -14,11 +18,18 @@ int main()
     Leaves leaves;
     BTMaker btMaker;
     auto factory = leaves.getTreeWithRegisteredNodes();
-    auto tree = factory.createTreeFromText(btMaker.getSampleTree());
+
+    auto tree = factory.createTreeFromText(btMaker.getTreeXML(getOutput(0)));
 
     leaves.tickResult.clear();
     tree.root_node->executeTick();
-    std::cout << "RESULT122: |" << leaves.tickResult << "|\n";
+    std::cout << "RESULT: |" << leaves.tickResult << "|\n";
+
+
+    char const* str1 = "abc";
+    char const* str2 = "abC";
+    int dist = edit_distance(str1, str2, _substitution = true);
+    std::cout << "The edit distance between \"" << str1 << "\" and \"" << str2 << "\" = " << dist << "\n";
 
     return 0;
 }
