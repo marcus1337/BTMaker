@@ -313,7 +313,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\Downloads\BehaviorTree.CPP-ros2-3.1.1\BehaviorTree.CPP-ros2-3.1.1\examples\Main.cpp" />
+    <ClCompile Include="src\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="C:\Users\Marcus\Downloads\BehaviorTree.CPP-ros2-3.1.1\BehaviorTree.CPP-ros2-3.1.1\builds\ZERO_CHECK.vcxproj">
