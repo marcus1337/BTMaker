@@ -29,7 +29,7 @@ int main()
     char const* str1 = "abc";
     char const* str2 = "abC";
     int dist = edit_distance(str1, str2, _substitution = true);
-    std::cout << "The edit distance between \"" << str1 << "\" and \"" << str2 << "\" = " << dist << "\n";
+    std::cout << "The edit distance betwee \"" << str1 << "\" and \"" << str2 << "\" = " << dist << "\n";
 
     return 0;
 }
