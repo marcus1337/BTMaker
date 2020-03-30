@@ -7,7 +7,9 @@ public:
 
     std::vector<std::string> interiorNodes = { "Sequence" , "Fallback"};
     std::vector<std::string> decoratorNodes = { "Inverter" };
-    std::vector<std::string> actionNodes = { "action1", "action2" };
+    std::vector<std::string> actionNodes = { "action1", "action2", "action3",
+    "action4", "action5", "action6", "action7", "action8", "action9",
+    "action10", "action11", "action12" };
 
     std::string xml_text = "<root main_tree_to_execute = \"MainTree\" >" 
         "<BehaviorTree ID=\"MainTree\">"
@@ -55,7 +57,8 @@ public:
         std::string result;
         beginning(result);
         startInterior(result, interiorNodes[0]);
-        action(result, actionNodes[0]);
+        action(result, "action0");
+        action(result, "action0");
         endInterior(result, interiorNodes[0]);
         ending(result);
         return result;
