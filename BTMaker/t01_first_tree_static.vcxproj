@@ -339,6 +339,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="src\BTMaker.h" />
     <ClInclude Include="src\Evaluator.h" />
     <ClInclude Include="src\Leaves.h" />
+    <ClInclude Include="src\NodeInfo.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

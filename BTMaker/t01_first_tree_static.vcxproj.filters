@@ -18,6 +18,9 @@
     <ClInclude Include="src\Evaluator.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\NodeInfo.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Main.cpp">

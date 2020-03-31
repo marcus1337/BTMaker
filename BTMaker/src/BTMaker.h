@@ -1,17 +1,22 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <stack>
+#include "NodeInfo.h"
 
 class BTMaker {
 public:
+    const int maxNodes;
+    BTMaker(int _maxNodes) : maxNodes(_maxNodes) {
+    }
 
-    std::vector<std::string> interiorNodes = { "Sequence" , "Fallback"};
+    std::vector<std::string> interiorNodes = { "Sequence" , "Fallback" };
     std::vector<std::string> decoratorNodes = { "Inverter" };
     std::vector<std::string> actionNodes = { "action1", "action2", "action3",
     "action4", "action5", "action6", "action7", "action8", "action9",
     "action10", "action11", "action12" };
 
-    std::string xml_text = "<root main_tree_to_execute = \"MainTree\" >" 
+    std::string xml_text = "<root main_tree_to_execute = \"MainTree\" >"
         "<BehaviorTree ID=\"MainTree\">"
         "<Sequence>"
         "<action1/>"
@@ -53,6 +58,38 @@ public:
         return tmpText;
     }
 
+    std::string getTreeXML(std::stack<Node> st) {
+        std::string result;
+
+        return result;
+    }
+
+    std::stack<Node> getTreeStack(float* NNOutput) {
+        std::stack<Node> result;
+        for (int i = 0; i < maxNodes; i += 2) {
+            NodeType nodeType;
+            int IDNum = 0;
+            if (NNOutput[i] < 0.33) {
+                nodeType = NodeType::NONE;
+            }else
+            if (NNOutput[i] < 0.66) {
+                nodeType = NodeType::ACTION;
+                int IDNum = NNOutput[i + 1] * actionNodes.size();
+                if (IDNum == actionNodes.size())
+                    IDNum--;
+            }
+            else {
+                nodeType = NodeType::INTERIOR;
+                int IDNum = NNOutput[i + 1] * interiorNodes.size();
+                if (IDNum == interiorNodes.size())
+                    IDNum--;
+            }
+            result.push(Node(nodeType,IDNum));
+        }
+
+        return result;
+    }
+
     std::string getTreeXML(float* NNOutput) {
         std::string result;
         beginning(result);
@@ -63,6 +100,6 @@ public:
         ending(result);
         return result;
     }
-       
+
 
 };

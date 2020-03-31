@@ -72,7 +72,7 @@ public:
         return BT::NodeStatus::SUCCESS;
     }
 
-    BT::BehaviorTreeFactory getTreeWithRegisteredNodes() {
+    BT::BehaviorTreeFactory getFactoryWithNodes() {
         BT::BehaviorTreeFactory factory;
         factory.registerSimpleAction("action0", std::bind(&Leaves::action0, this));
         factory.registerSimpleAction("action1", std::bind(&Leaves::action1, this));

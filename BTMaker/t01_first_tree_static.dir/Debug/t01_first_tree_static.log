@@ -1,5 +1,7 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(391,5): warning MSB8028: The intermediate directory (t01_first_tree_static.dir\Debug\) contains files shared from another project (t01_first_tree_static.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   Main.cpp
+c:\users\marcus\documents\github\btmaker\btmaker\src\BTMaker.h(71): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+c:\users\marcus\documents\github\btmaker\btmaker\src\BTMaker.h(77): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
 C:\Users\Marcus\Documents\Github\BTMaker\includes\boost/algorithm/sequence/edit_distance.hpp(66): warning C4003: not enough arguments for function-like macro invocation 'BOOST_PP_SEQ_DETAIL_IS_NOT_EMPTY'
 C:\Users\Marcus\Documents\Github\BTMaker\includes\boost/algorithm/sequence/edit_distance.hpp(66): warning C4003: not enough arguments for function-like macro invocation 'BOOST_PP_SEQ_DETAIL_EMPTY_SIZE'
   t01_first_tree_static.vcxproj -> C:\Users\Marcus\Downloads\BehaviorTree.CPP-ros2-3.1.1\BehaviorTree.CPP-ros2-3.1.1\builds\bin\Debug\t01_first_tree_static.exe

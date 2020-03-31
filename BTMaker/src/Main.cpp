@@ -8,22 +8,33 @@
 
 using namespace std;
 
+
 int main()
 {
-    init(10, 10, 10);
+    int maxTreeNodes = 20;
+
+    init(1, maxTreeNodes*2, 50);
+    float tmpVal = 1.0f;
+    float* tmpVals = &tmpVal;
+    calcAll(tmpVals);
 
     Leaves leaves;
-    BTMaker btMaker;
-    Evaluator evaluator;
-    auto factory = leaves.getTreeWithRegisteredNodes();
-    
-    std::string xml_text = btMaker.getTreeXML(getOutput(0));
-    auto tree = factory.createTreeFromText(xml_text);
+    BTMaker btMaker(maxTreeNodes);
+    auto st = btMaker.getTreeStack(getOutput(0));
+    while (!st.empty()) {
+        std::cout << Node::getTypeStr(st.top().type) << "\n";
+        st.pop();
+    }
 
+    Evaluator evaluator;
+    auto factory = leaves.getFactoryWithNodes();
+    
+    /*std::string xml_text = btMaker.getTreeXML(getOutput(0));
+    auto tree = factory.createTreeFromText(xml_text);
     leaves.tickResult.clear();
     tree.root_node->executeTick();
     std::cout << "RESULT: " << evaluator.getReward(leaves.tickResult) << "\n"
-        << " _" << leaves.tickResult << "_\n";
+        << " _" << leaves.tickResult << "_\n";*/
 
     return 0;
 }
