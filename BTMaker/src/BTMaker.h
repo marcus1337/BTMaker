@@ -58,9 +58,40 @@ public:
         return tmpText;
     }
 
+    void standardStart(std::string& str) {
+        beginning(str);
+        startInterior(str, interiorNodes[0]);
+    }
+
     std::string getTreeXML(std::stack<Node> st) {
         std::string result;
+        //standardStart(result);
+        int level = 0;
+        std::stack<std::string> endInteriors;
+        while (!st.empty() && level >= 0) {
+            if (st.top().type == NodeType::NONE) {
+                level--;
+                if (level >= 0) {
+                    endInterior(result, endInteriors.top());
+                    endInteriors.pop();
+                }
+            }
+            if (st.top().type == NodeType::ACTION) {
+                action(result, actionNodes[0]);
+            }
+            if (st.top().type == NodeType::INTERIOR) {
+                startInterior(result, interiorNodes[0]);
+                endInteriors.push(interiorNodes[0]);
+                level++;
+            }
+            st.pop();
+        }
+        while (!endInteriors.empty()) {
+            endInterior(result, endInteriors.top());
+            endInteriors.pop();
+        }
 
+        //ending(result);
         return result;
     }
 

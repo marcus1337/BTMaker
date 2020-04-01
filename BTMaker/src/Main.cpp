@@ -21,10 +21,12 @@ int main()
     Leaves leaves;
     BTMaker btMaker(maxTreeNodes);
     auto st = btMaker.getTreeStack(getOutput(0));
+    std::string xmlTmp = btMaker.getTreeXML(st);
     while (!st.empty()) {
         std::cout << Node::getTypeStr(st.top().type) << "\n";
         st.pop();
     }
+    cout << "\n\n" << xmlTmp << "\n";
 
     Evaluator evaluator;
     auto factory = leaves.getFactoryWithNodes();
