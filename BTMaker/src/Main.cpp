@@ -9,6 +9,12 @@
 using namespace std;
 
 
+void printTree(std::vector<Node> treeVec) {
+    for (const auto& n : treeVec) {
+        std::cout << Node::getTypeStr(n.type) << "\n";
+    }
+}
+
 int main()
 {
     int maxTreeNodes = 20;
@@ -20,19 +26,21 @@ int main()
 
     Leaves leaves;
     BTMaker btMaker(maxTreeNodes);
-    auto st = btMaker.getTreeStack(getOutput(0));
-    std::string xmlTmp = btMaker.getTreeXML(st);
-    cout << "OK? " << btMaker.checkValidTreeTopology(st) << ".\n\n";
 
-    while (!st.empty()) {
-        std::cout << Node::getTypeStr(st.top().type) << "\n";
-        st.pop();
-    }
-    cout << "\n\n" << xmlTmp << "\n";
+    auto treeVec = btMaker.getTreeVector(getOutput(0));
+    bool validTree = btMaker.checkValidTreeTopology(treeVec);
+    std::cout << "VALID? " << validTree << "\n";
 
     Evaluator evaluator;
-    auto factory = leaves.getFactoryWithNodes();
-    
+    if (validTree) {
+        //int treeScore = evaluator.rateTreeTopology(treeVec);
+    }
+
+    printTree(treeVec);
+
+    //std::string xmlTmp = btMaker.getTreeXML(st);
+    //auto factory = leaves.getFactoryWithNodes();
+  
     /*std::string xml_text = btMaker.getTreeXML(getOutput(0));
     auto tree = factory.createTreeFromText(xml_text);
     leaves.tickResult.clear();

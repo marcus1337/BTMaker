@@ -139,20 +139,22 @@ public:
         return false;
     }
 
-    bool checkEmptyInteriorNode(std::stack<Node> st) {
+    bool checkEmptyInteriorNode(std::vector<Node>& st) {
         std::stack<bool> actionLevel;
         actionLevel.push(false);
-        while (!st.empty() && !actionLevel.empty()) {
-            if (checkNodeForEmptyClosing(st.top().type, actionLevel))
+        for (const auto& node : st) {
+            if (actionLevel.empty())
+                break;
+            if (checkNodeForEmptyClosing(node.type, actionLevel))
                 return true;
-            st.pop();
         }
         return hasRemainingEmptyInterior(actionLevel);
     }
 
-    bool checkValidTreeTopology(std::stack<Node> st) {
+    bool checkValidTreeTopology(std::vector<Node> st) {
         if (checkEmptyInteriorNode(st))
             return false;
+
         return true;
     }
 
@@ -182,17 +184,17 @@ public:
         return result;
     }
 
-    std::stack<Node> getTreeStack(float* NNOutput) {
-        std::stack<Node> result;
+    std::vector<Node> getTreeVector(float* NNOutput) {
+        std::vector<Node> result;
         for (int i = 0; i < maxNodes; i += 2) {
             NodeType nodeType = classifyNodeType(NNOutput[i]);
             int IDNum = classifyNodeID(NNOutput[i + 1], nodeType);
-            result.push(Node(nodeType, IDNum));
+            result.push_back(Node(nodeType, IDNum));
         }
         return result;
     }
 
-    std::string getTreeXML(float* NNOutput) {
+   /* std::string getTreeXML(float* NNOutput) {
         std::string result;
         beginning(result);
         startInterior(result, interiorNodes[0]);
@@ -201,7 +203,7 @@ public:
         endInterior(result, interiorNodes[0]);
         ending(result);
         return result;
-    }
+    }*/
 
 
 };
