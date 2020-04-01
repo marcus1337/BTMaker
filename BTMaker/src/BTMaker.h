@@ -68,35 +68,48 @@ public:
         ending(str);
     }
 
-    std::string getTreeXML(std::stack<Node> st) {
-        std::string result;
-        standardStart(result);
-        int level = 0;
-        std::stack<std::string> unclosedInteriors;
-        while (!st.empty() && level >= 0) {
-            NodeType type = st.top().type;
-            int IDNum = st.top().IDNumber;
-            if (type == NodeType::NONE) {
-                level--;
-                if (level >= 0) {
-                    endInterior(result, unclosedInteriors.top());
-                    unclosedInteriors.pop();
-                }
-            }
-            if (type == NodeType::ACTION)
-                action(result, actionNodes[IDNum]);
-            if (type == NodeType::INTERIOR) {
-                startInterior(result, interiorNodes[IDNum]);
-                unclosedInteriors.push(interiorNodes[IDNum]);
-                level++;
-            }
-            st.pop();
+    bool handleEmptyNode(Node node, std::string& result, std::stack<std::string>& unclosedInteriors) {
+        if (node.type == NodeType::NONE) {
+            if (unclosedInteriors.empty())
+                return false;
+            endInterior(result, unclosedInteriors.top());
+            unclosedInteriors.pop();
         }
+        return true;
+    }
+
+    bool handleStackNode(Node node, std::string& result, std::stack<std::string>& unclosedInteriors) {
+        if (!handleEmptyNode(node, result, unclosedInteriors))
+            return false;
+        if (node.type == NodeType::ACTION)
+            action(result, actionNodes[node.IDNumber]);
+        if (node.type == NodeType::INTERIOR) {
+            startInterior(result, interiorNodes[node.IDNumber]);
+            unclosedInteriors.push(interiorNodes[node.IDNumber]);
+        }
+        return true;
+    }
+
+    void addRemainingCloseTags(std::string& result, std::stack<std::string>& unclosedInteriors) {
         while (!unclosedInteriors.empty()) {
             endInterior(result, unclosedInteriors.top());
             unclosedInteriors.pop();
         }
+    }
 
+    std::string getStringFromNodes(std::stack<Node> st) {
+        std::string result;
+        std::stack<std::string> unclosedInteriors;
+        while (!st.empty() && handleStackNode(st.top(), result, unclosedInteriors))
+            st.pop();
+        addRemainingCloseTags(result, unclosedInteriors);
+        return result;
+    }
+
+    std::string getTreeXML(std::stack<Node> st) {
+        std::string result;
+        standardStart(result);
+        result += getStringFromNodes(st);
         standardEnd(result);
         return result;
     }
@@ -123,8 +136,8 @@ public:
         std::stack<Node> result;
         for (int i = 0; i < maxNodes; i += 2) {
             NodeType nodeType = classifyNodeType(NNOutput[i]);
-            int IDNum = classifyNodeID(NNOutput[i+1], nodeType);
-            result.push(Node(nodeType,IDNum));
+            int IDNum = classifyNodeID(NNOutput[i + 1], nodeType);
+            result.push(Node(nodeType, IDNum));
         }
         return result;
     }
