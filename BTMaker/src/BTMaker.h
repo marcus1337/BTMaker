@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <stack>
+#include <algorithm>
 #include "NodeInfo.h"
 
 class BTMaker {
@@ -62,62 +63,69 @@ public:
         beginning(str);
         startInterior(str, interiorNodes[0]);
     }
+    void standardEnd(std::string& str) {
+        endInterior(str, interiorNodes[0]);
+        ending(str);
+    }
 
     std::string getTreeXML(std::stack<Node> st) {
         std::string result;
-        //standardStart(result);
+        standardStart(result);
         int level = 0;
-        std::stack<std::string> endInteriors;
+        std::stack<std::string> unclosedInteriors;
         while (!st.empty() && level >= 0) {
-            if (st.top().type == NodeType::NONE) {
+            NodeType type = st.top().type;
+            int IDNum = st.top().IDNumber;
+            if (type == NodeType::NONE) {
                 level--;
                 if (level >= 0) {
-                    endInterior(result, endInteriors.top());
-                    endInteriors.pop();
+                    endInterior(result, unclosedInteriors.top());
+                    unclosedInteriors.pop();
                 }
             }
-            if (st.top().type == NodeType::ACTION) {
-                action(result, actionNodes[0]);
-            }
-            if (st.top().type == NodeType::INTERIOR) {
-                startInterior(result, interiorNodes[0]);
-                endInteriors.push(interiorNodes[0]);
+            if (type == NodeType::ACTION)
+                action(result, actionNodes[IDNum]);
+            if (type == NodeType::INTERIOR) {
+                startInterior(result, interiorNodes[IDNum]);
+                unclosedInteriors.push(interiorNodes[IDNum]);
                 level++;
             }
             st.pop();
         }
-        while (!endInteriors.empty()) {
-            endInterior(result, endInteriors.top());
-            endInteriors.pop();
+        while (!unclosedInteriors.empty()) {
+            endInterior(result, unclosedInteriors.top());
+            unclosedInteriors.pop();
         }
 
-        //ending(result);
+        standardEnd(result);
+        return result;
+    }
+
+    NodeType classifyNodeType(float value) {
+        if (value < 0.33)
+            return NodeType::NONE;
+        if (value < 0.66)
+            return NodeType::ACTION;
+        return NodeType::INTERIOR;
+    }
+
+    int classifyNodeID(float value, NodeType nodeType) {
+        float result = 0;
+        value = std::clamp(value, 0.f, 0.99f);
+        if (nodeType == NodeType::ACTION)
+            result = value * actionNodes.size();
+        if (nodeType == NodeType::INTERIOR)
+            result = value * interiorNodes.size();
         return result;
     }
 
     std::stack<Node> getTreeStack(float* NNOutput) {
         std::stack<Node> result;
         for (int i = 0; i < maxNodes; i += 2) {
-            NodeType nodeType;
-            int IDNum = 0;
-            if (NNOutput[i] < 0.33) {
-                nodeType = NodeType::NONE;
-            }else
-            if (NNOutput[i] < 0.66) {
-                nodeType = NodeType::ACTION;
-                int IDNum = NNOutput[i + 1] * actionNodes.size();
-                if (IDNum == actionNodes.size())
-                    IDNum--;
-            }
-            else {
-                nodeType = NodeType::INTERIOR;
-                int IDNum = NNOutput[i + 1] * interiorNodes.size();
-                if (IDNum == interiorNodes.size())
-                    IDNum--;
-            }
+            NodeType nodeType = classifyNodeType(NNOutput[i]);
+            int IDNum = classifyNodeID(NNOutput[i+1], nodeType);
             result.push(Node(nodeType,IDNum));
         }
-
         return result;
     }
 

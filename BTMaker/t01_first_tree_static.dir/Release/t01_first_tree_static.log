@@ -1,4 +1,0 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(391,5): warning MSB8028: The intermediate directory (t01_first_tree_static.dir\Release\) contains files shared from another project (t01_first_tree_static.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Building Custom Rule C:/Users/Marcus/Downloads/BehaviorTree.CPP-ros2-3.1.1/BehaviorTree.CPP-ros2-3.1.1/examples/CMakeLists.txt
-  t01_build_your_first_tree.cpp
-  t01_first_tree_static.vcxproj -> C:\Users\Marcus\Downloads\BehaviorTree.CPP-ros2-3.1.1\BehaviorTree.CPP-ros2-3.1.1\builds\bin\Release\t01_first_tree_static.exe
