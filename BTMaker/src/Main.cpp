@@ -22,6 +22,8 @@ int main()
     BTMaker btMaker(maxTreeNodes);
     auto st = btMaker.getTreeStack(getOutput(0));
     std::string xmlTmp = btMaker.getTreeXML(st);
+    cout << "OK? " << btMaker.checkValidTreeTopology(st) << ".\n\n";
+
     while (!st.empty()) {
         std::cout << Node::getTypeStr(st.top().type) << "\n";
         st.pop();

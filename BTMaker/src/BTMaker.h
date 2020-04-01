@@ -106,6 +106,56 @@ public:
         return result;
     }
 
+    bool hasRemainingEmptyInterior(std::stack<bool>& actionAtLevel) {
+        while (!actionAtLevel.empty()) {
+            if (!actionAtLevel.top())
+                return true;
+            actionAtLevel.pop();
+        }
+        return false;
+    }
+
+    void markInteriorsOccupied(std::stack<bool>& actionAtLevel) {
+        std::stack<bool> tmpActionLevels;
+        for (int i = 0; i < actionAtLevel.size(); i++)
+            tmpActionLevels.push(true);
+        actionAtLevel = tmpActionLevels;
+    }
+
+    bool interiorClosingEmpty(std::stack<bool>& actionAtLevel) {
+        if (!actionAtLevel.top())
+            return true;
+        actionAtLevel.pop();
+        return false;
+    }
+
+    bool checkNodeForEmptyClosing(NodeType type, std::stack<bool>& actionAtLevel) {
+        if (type == NodeType::NONE && interiorClosingEmpty(actionAtLevel))
+            return true;
+        if (type == NodeType::INTERIOR)
+            actionAtLevel.push(false);
+        if (type == NodeType::ACTION)
+            markInteriorsOccupied(actionAtLevel);
+        return false;
+    }
+
+    bool checkEmptyInteriorNode(std::stack<Node> st) {
+        std::stack<bool> actionLevel;
+        actionLevel.push(false);
+        while (!st.empty() && !actionLevel.empty()) {
+            if (checkNodeForEmptyClosing(st.top().type, actionLevel))
+                return true;
+            st.pop();
+        }
+        return hasRemainingEmptyInterior(actionLevel);
+    }
+
+    bool checkValidTreeTopology(std::stack<Node> st) {
+        if (checkEmptyInteriorNode(st))
+            return false;
+        return true;
+    }
+
     std::string getTreeXML(std::stack<Node> st) {
         std::string result;
         standardStart(result);
