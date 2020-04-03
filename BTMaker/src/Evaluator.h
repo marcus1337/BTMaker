@@ -19,14 +19,14 @@ public:
 
     void addMissingNoneNodes();
 
-    std::vector<NodeType> convertStackNodesToTypeVector(std::stack<Node> st);
+    std::vector<NodeType> convertNodesToTypes(std::vector<Node> tmpNodes);
 
     std::vector<std::set<int>> getEdges();
 
-    void initTreeDataStructures(std::stack<Node> st);
+    void initTreeDataStructures(std::vector<Node> st);
 
     int countLeavesWithLimitedActionNodes(std::stack<Node> st);
 
-    int rateTreeTopology(std::stack<Node> st);
+    int rateTreeTopology(std::vector<Node> st);
 
 };

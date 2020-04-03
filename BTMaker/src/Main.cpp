@@ -33,7 +33,7 @@ int main()
 
     Evaluator evaluator;
     if (validTree) {
-        //int treeScore = evaluator.rateTreeTopology(treeVec);
+        int treeScore = evaluator.rateTreeTopology(treeVec);
     }
 
     printTree(treeVec);

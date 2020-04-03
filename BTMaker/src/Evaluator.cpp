@@ -20,13 +20,10 @@ void Evaluator::addMissingNoneNodes() {
     }
 }
 
-std::vector<NodeType> Evaluator::convertStackNodesToTypeVector(std::stack<Node> st) {
+std::vector<NodeType> Evaluator::convertNodesToTypes(std::vector<Node> tmpNodes) {
     std::vector<NodeType> tmpNodeVec;
-    Node* endPoint = &st.top() + 1;
-    std::vector<Node> tmpNodes = std::vector<Node>(endPoint - st.size(), endPoint);
-    for (int i = 0; i < tmpNodes.size(); i++) {
+    for (int i = 0; i < tmpNodes.size(); i++)
         tmpNodeVec.push_back(tmpNodes[i].type);
-    }
     return tmpNodeVec;
 }
 
@@ -36,8 +33,8 @@ std::vector<std::set<int>> Evaluator::getEdges() {
     return abstractNodes;
 }
 
-void Evaluator::initTreeDataStructures(std::stack<Node> st) {
-    allNodes = convertStackNodesToTypeVector(st);
+void Evaluator::initTreeDataStructures(std::vector<Node> st) {
+    allNodes = convertNodesToTypes(st);
 }
 
 int Evaluator::countLeavesWithLimitedActionNodes(std::stack<Node> st) {
@@ -46,7 +43,7 @@ int Evaluator::countLeavesWithLimitedActionNodes(std::stack<Node> st) {
     return res;
 }
 
-int Evaluator::rateTreeTopology(std::stack<Node> st) {
+int Evaluator::rateTreeTopology(std::vector<Node> st) {
     int score = 0;
 
     return score;
