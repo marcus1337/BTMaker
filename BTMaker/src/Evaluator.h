@@ -17,8 +17,6 @@ public:
     std::vector<std::set<int>> interiors;
     std::vector<NodeType> allNodes;
 
-    void addMissingNoneNodes();
-
     std::vector<NodeType> convertNodesToTypes(std::vector<Node> tmpNodes);
 
     std::vector<std::set<int>> getEdges();

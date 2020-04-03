@@ -9,17 +9,6 @@ int Evaluator::getReward(std::string newSentence) {
     return maxReward - edit_distance(sentence, newSentence, _substitution = true);
 }
 
-void Evaluator::addMissingNoneNodes() {
-    int numInterior = 0;
-    int numNone = 0;
-    for (const auto& n : allNodes) {
-        if (n == NodeType::INTERIOR)
-            numInterior++;
-        if (n == NodeType::NONE)
-            numNone++;
-    }
-}
-
 std::vector<NodeType> Evaluator::convertNodesToTypes(std::vector<Node> tmpNodes) {
     std::vector<NodeType> tmpNodeVec;
     for (int i = 0; i < tmpNodes.size(); i++)

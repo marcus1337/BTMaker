@@ -184,6 +184,41 @@ public:
         return result;
     }
 
+    void trimTree(std::vector<Node>& _tree) {
+        int level = 0;
+        for (int i = 0; i < _tree.size(); i++) {
+            if (_tree[i].type == NodeType::INTERIOR)
+                level++;
+            if (_tree[i].type == NodeType::NONE)
+                level--;
+            if (level < 0) {
+                _tree.erase(_tree.begin()+i+1, _tree.end());
+                break;
+            }
+        }
+    }
+
+    void countNumInteriorAndNones(int& numInterior, int& numNone, std::vector<Node>& _tree) {
+        for (const auto& n : _tree) {
+            if (n.type == NodeType::INTERIOR)
+                numInterior++;
+            if (n.type == NodeType::NONE)
+                numNone++;
+        }
+    }
+
+    void addNoneEndings(std::vector<Node>& _tree) {
+        int numInterior = 0;
+        int numNone = 0;
+        countNumInteriorAndNones(numInterior, numNone, _tree);
+        for (int i = 0; i < numInterior - numNone; i++)
+            _tree.push_back(Node(NodeType::NONE, 0));
+        numInterior = numNone = 0;
+        countNumInteriorAndNones(numInterior, numNone, _tree);
+        if(numInterior == numNone)
+            _tree.push_back(Node(NodeType::NONE, 0));
+    }
+
     std::vector<Node> getTreeVector(float* NNOutput) {
         std::vector<Node> result;
         for (int i = 0; i < maxNodes; i += 2) {
@@ -191,19 +226,10 @@ public:
             int IDNum = classifyNodeID(NNOutput[i + 1], nodeType);
             result.push_back(Node(nodeType, IDNum));
         }
+        trimTree(result);
+        addNoneEndings(result);
         return result;
     }
-
-   /* std::string getTreeXML(float* NNOutput) {
-        std::string result;
-        beginning(result);
-        startInterior(result, interiorNodes[0]);
-        action(result, "action0");
-        action(result, "action0");
-        endInterior(result, interiorNodes[0]);
-        ending(result);
-        return result;
-    }*/
 
 
 };
