@@ -13,18 +13,10 @@ public:
 
     int getReward(std::string newSentence);
 
-    //std::set<int> edges;
-    std::vector<std::set<int>> interiors;
-    std::vector<NodeType> allNodes;
-
-    std::vector<NodeType> convertNodesToTypes(std::vector<Node> tmpNodes);
-
-    std::vector<std::set<int>> getEdges();
-
-    void initTreeDataStructures(std::vector<Node> st);
-
-    int countLeavesWithLimitedActionNodes(std::stack<Node> st);
+    std::vector<NodeType> getNodeTypes(std::vector<Node> tmpNodes);
+    std::vector<std::vector<Node>> getInteriors(std::vector<Node> tmpNodes);
 
     int rateTreeTopology(std::vector<Node> st);
+
 
 };

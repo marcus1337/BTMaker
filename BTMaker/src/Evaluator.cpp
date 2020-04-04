@@ -2,6 +2,7 @@
 #include "boost/algorithm/sequence/edit_distance.hpp"
 
 #include <numeric>
+#include <iostream>
 
 int Evaluator::getReward(std::string newSentence) {
     using boost::algorithm::sequence::edit_distance;
@@ -9,31 +10,39 @@ int Evaluator::getReward(std::string newSentence) {
     return maxReward - edit_distance(sentence, newSentence, _substitution = true);
 }
 
-std::vector<NodeType> Evaluator::convertNodesToTypes(std::vector<Node> tmpNodes) {
+std::vector<NodeType> Evaluator::getNodeTypes(std::vector<Node> tmpNodes) {
     std::vector<NodeType> tmpNodeVec;
     for (int i = 0; i < tmpNodes.size(); i++)
         tmpNodeVec.push_back(tmpNodes[i].type);
     return tmpNodeVec;
 }
 
-std::vector<std::set<int>> Evaluator::getEdges() {
-    std::vector<std::set<int>> abstractNodes;
+std::vector<std::vector<Node>> Evaluator::getInteriors(std::vector<Node> nodes) {
+    std::vector<std::vector<Node>> result;
+    std::stack<std::vector<Node>> st;
+    st.push(std::vector<Node>());
+    st.top().push_back(nodes[0]);
 
-    return abstractNodes;
+    for (int i = 1; i < nodes.size(); i++) {
+        if (nodes[i].type == NodeType::INTERIOR) {
+            st.top().push_back(nodes[i]);
+            st.push(std::vector<Node>());
+        }
+        if (nodes[i].type == NodeType::ACTION) {
+            st.top().push_back(nodes[i]);
+        }
+        if (nodes[i].type == NodeType::NONE) {
+            result.push_back(st.top());
+            st.pop();
+        }
+    }
+
+    return result;
 }
 
-void Evaluator::initTreeDataStructures(std::vector<Node> st) {
-    allNodes = convertNodesToTypes(st);
-}
-
-int Evaluator::countLeavesWithLimitedActionNodes(std::stack<Node> st) {
-    int res = 0;
-
-    return res;
-}
-
-int Evaluator::rateTreeTopology(std::vector<Node> st) {
+int Evaluator::rateTreeTopology(std::vector<Node> nodes) {
     int score = 0;
+    auto interiors = getInteriors(nodes);
 
     return score;
 }
