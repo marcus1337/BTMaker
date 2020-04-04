@@ -77,11 +77,13 @@ public:
         }
     }
 
-    std::string getStringFromNodes(std::stack<Node> st) {
+    std::string getStringFromNodes(std::vector<Node> st) {
         std::string result;
         std::stack<std::string> unclosedInteriors;
-        while (!st.empty() && handleStackNode(st.top(), result, unclosedInteriors))
-            st.pop();
+        for (int i = 0; i < st.size(); i++) {
+            if (!handleStackNode(st[i], result, unclosedInteriors))
+                break;
+        }
         addRemainingCloseTags(result, unclosedInteriors);
         return result;
     }
@@ -138,7 +140,7 @@ public:
         return true;
     }
 
-    std::string getTreeXML(std::stack<Node> st) {
+    std::string getTreeXML(std::vector<Node> st) {
         std::string result;
         beginning(result);
         result += getStringFromNodes(st);
