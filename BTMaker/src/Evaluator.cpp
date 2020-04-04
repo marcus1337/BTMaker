@@ -41,8 +41,14 @@ std::vector<std::vector<Node>> Evaluator::getInteriors(std::vector<Node> nodes) 
 }
 
 int Evaluator::rateTreeTopology(std::vector<Node> nodes) {
-    int score = 0;
+    int score = 10;
     auto interiors = getInteriors(nodes);
+    for (const auto& interior : interiors) {
+        if (interior.size() == 1 && interior[0].type == NodeType::INTERIOR)
+            score -= 7;
+    }
+    if (interiors.size() >= 2)
+        score += 5;
 
     return score;
 }

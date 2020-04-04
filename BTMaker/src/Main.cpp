@@ -34,23 +34,8 @@ int main()
     Evaluator evaluator;
     if (validTree) {
         int treeScore = evaluator.rateTreeTopology(treeVec);
-
         printTree(treeVec);
-
-        //std::string xmlTmp = btMaker.getTreeXML(treeVec);
-        //std::cout << "RESULT: " << xmlTmp << "\n";
-        //auto factory = leaves.getFactoryWithNodes();
-        //auto tree = factory.createTreeFromText(xmlTmp);
     }
-
-
-
-
-    /*
-    leaves.tickResult.clear();
-    tree.root_node->executeTick();
-    std::cout << "RESULT: " << evaluator.getReward(leaves.tickResult) << "\n"
-        << " _" << leaves.tickResult << "_\n";*/
 
     return 0;
 }
