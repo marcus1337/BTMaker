@@ -48,26 +48,6 @@ public:
         str += "<" + actionID + "/>";
     }
 
-    std::string getSampleTree() {
-        std::string tmpText;
-        beginning(tmpText);
-        startInterior(tmpText, interiorNodes[0]);
-        action(tmpText, actionNodes[0]);
-        action(tmpText, actionNodes[1]);
-        endInterior(tmpText, interiorNodes[0]);
-        ending(tmpText);
-        return tmpText;
-    }
-
-    void standardStart(std::string& str) {
-        beginning(str);
-        startInterior(str, interiorNodes[0]);
-    }
-    void standardEnd(std::string& str) {
-        endInterior(str, interiorNodes[0]);
-        ending(str);
-    }
-
     bool handleEmptyNode(Node node, std::string& result, std::stack<std::string>& unclosedInteriors) {
         if (node.type == NodeType::NONE) {
             if (unclosedInteriors.empty())
@@ -160,9 +140,9 @@ public:
 
     std::string getTreeXML(std::stack<Node> st) {
         std::string result;
-        standardStart(result);
+        beginning(result);
         result += getStringFromNodes(st);
-        standardEnd(result);
+        ending(result);
         return result;
     }
 
@@ -185,7 +165,7 @@ public:
     }
 
     void trimTree(std::vector<Node>& _tree) {
-        int level = 0;
+        int level = -1;
         for (int i = 0; i < _tree.size(); i++) {
             if (_tree[i].type == NodeType::INTERIOR)
                 level++;
@@ -213,14 +193,11 @@ public:
         countNumInteriorAndNones(numInterior, numNone, _tree);
         for (int i = 0; i < numInterior - numNone; i++)
             _tree.push_back(Node(NodeType::NONE, 0));
-        numInterior = numNone = 0;
-        countNumInteriorAndNones(numInterior, numNone, _tree);
-        if(numInterior == numNone)
-            _tree.push_back(Node(NodeType::NONE, 0));
     }
 
     std::vector<Node> getTreeVector(float* NNOutput) {
         std::vector<Node> result;
+        result.push_back(Node(NodeType::INTERIOR, 0));
         for (int i = 0; i < maxNodes; i += 2) {
             NodeType nodeType = classifyNodeType(NNOutput[i]);
             int IDNum = classifyNodeID(NNOutput[i + 1], nodeType);
